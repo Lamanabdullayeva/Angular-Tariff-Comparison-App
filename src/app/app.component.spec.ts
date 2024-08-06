@@ -1,10 +1,12 @@
 import { TestBed } from '@angular/core/testing';
 import { AppComponent } from './app.component';
+import { CommonModule } from '@angular/common';
+import { TariffListComponent } from './tariff/components/tariff-list/tariff-list.component';
 
 describe('AppComponent', () => {
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      imports: [AppComponent],
+      imports: [CommonModule, AppComponent, TariffListComponent],
     }).compileComponents();
   });
 
@@ -14,16 +16,11 @@ describe('AppComponent', () => {
     expect(app).toBeTruthy();
   });
 
-  it(`should have the 'la-verifox-test-task' title`, () => {
-    const fixture = TestBed.createComponent(AppComponent);
-    const app = fixture.componentInstance;
-    expect(app.title).toEqual('la-verifox-test-task');
-  });
-
-  it('should render title', () => {
+  it('should render TariffListComponent', () => {
     const fixture = TestBed.createComponent(AppComponent);
     fixture.detectChanges();
     const compiled = fixture.nativeElement as HTMLElement;
-    expect(compiled.querySelector('h1')?.textContent).toContain('Hello, la-verifox-test-task');
+
+    expect(compiled.querySelector('app-tariff-list')).toBeTruthy();
   });
 });
