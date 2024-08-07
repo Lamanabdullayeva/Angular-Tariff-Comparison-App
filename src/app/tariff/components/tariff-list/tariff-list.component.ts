@@ -52,7 +52,7 @@ export class TariffListComponent implements OnInit {
   }
 
   // fetches the tariff data from the TariffService
-  private fetchData() {
+  fetchData() {
     this.tariffs = this.tariffService.getTariffs();
   }
 
@@ -62,7 +62,7 @@ export class TariffListComponent implements OnInit {
    *
    * @param {string | null} order - The order in which to sort the tariffs, either 'asc' for ascending or 'desc' for descending
    */
-  private sortTariffs(order: string | null): void {
+  sortTariffs(order: string | null): void {
     this.tariffs = this.tariffs.sort((a, b) =>
       order === 'asc' ? a.price - b.price : b.price - a.price
     );
