@@ -8,6 +8,9 @@ export const en = {
       SORT: 'Sort by Price',
       COMPARE: 'Add to Compare',
     },
+    PROPERTIES: {
+      PRICE: 'Price',
+    },
   },
   BUTTON: {
     ADD: 'Add',

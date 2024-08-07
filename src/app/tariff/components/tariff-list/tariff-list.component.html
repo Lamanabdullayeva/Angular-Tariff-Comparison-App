@@ -9,6 +9,7 @@
   </mat-form-field>
 </form>
 
+<!-- List of all tariffs which ayre displayed in a mat-card -->
 <span *ngFor="let tariff of tariffs" class="p-1">
   <mat-card appearance="outlined">
     <mat-card-header>
@@ -20,7 +21,7 @@
         <span>
           {{ tariff.description }}
         </span>
-        <span> Price: {{ tariff.price }} </span>
+        <span> {{ labels.TARIF.PROPERTIES.PRICE }}: {{ tariff.price }} </span>
       </span>
       <button mat-raised-button (click)="addToCompare(tariff)">
         {{ labels.TARIF.ACTIONS.COMPARE }}

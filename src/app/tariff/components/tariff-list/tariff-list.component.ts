@@ -7,9 +7,9 @@ import { MatListModule } from '@angular/material/list';
 import { MatSelectModule } from '@angular/material/select';
 import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
+import { en } from '../../../i18n/en';
 import { ITarif } from '../../interfaces/i-tarif';
 import { TariffService } from '../../services/tariff.service';
-import { en } from '../../../i18n/en';
 
 @Component({
   selector: 'app-tariff-list',
@@ -28,8 +28,10 @@ import { en } from '../../../i18n/en';
   styleUrl: './tariff-list.component.scss',
 })
 export class TariffListComponent implements OnInit {
+  // holds the English labels for localization
   public readonly labels = en;
 
+  // tariff list
   tariffs: ITarif[] = [];
 
   sortFilterForm = new FormGroup({
@@ -39,14 +41,19 @@ export class TariffListComponent implements OnInit {
   constructor(public readonly tariffService: TariffService) {}
 
   ngOnInit(): void {
-    this.tariffs = this.tariffService.getTariffs();
+    // fetches the data from TariffService on initialization
+    this.fetchData();
 
     this.sortFilterForm.get('sortOrder')?.valueChanges.subscribe((order) => {
       this.sortTariffs(order);
     });
   }
 
-  sortTariffs(order: string | null): void {
+  private fetchData() {
+    this.tariffs = this.tariffService.getTariffs();
+  }
+
+  private sortTariffs(order: string | null): void {
     this.tariffs = this.tariffs.sort((a, b) =>
       order === 'asc' ? a.price - b.price : b.price - a.price
     );
