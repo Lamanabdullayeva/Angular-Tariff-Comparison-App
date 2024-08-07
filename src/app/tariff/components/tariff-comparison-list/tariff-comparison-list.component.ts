@@ -11,20 +11,19 @@ import { TariffService } from '../../services/tariff.service';
   standalone: true,
   imports: [CommonModule, MatListModule, RouterModule, MatButtonModule],
   templateUrl: './tariff-comparison-list.component.html',
-  styleUrl: './tariff-comparison-list.component.scss'
+  styleUrl: './tariff-comparison-list.component.scss',
 })
 export class TariffComparisonListComponent {
-
   public labels = {
-    title: "Comparison List",
-    comparisonPage: "Go to Comparison Page",
-    removeButton: "Remove"
-  }
+    title: 'Comparison List',
+    comparisonPage: 'Go to Comparison Page',
+    removeButton: 'Remove',
+  };
 
-  constructor(public readonly tariffService: TariffService) { }
+  constructor(public readonly tariffService: TariffService) {}
 
   removeFromCompare(tariff: ITarif): void {
-    this.tariffService.tariffComparisonList = this.tariffService.tariffComparisonList.filter(t => t !== tariff);
+    this.tariffService.tariffComparisonList =
+      this.tariffService.tariffComparisonList.filter((t) => t !== tariff);
   }
-
 }

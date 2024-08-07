@@ -1,31 +1,30 @@
-  <!--Dropdown to sort by price-->
-  <form [formGroup]="sortFilterForm">
-    <mat-form-field appearance="fill">
-      <mat-label>{{labels.sort}}</mat-label>
-      <mat-select formControlName="sortOrder">
-        <mat-option value="asc">Ascending</mat-option>
-        <mat-option value="desc">Descending</mat-option>
-      </mat-select>
-    </mat-form-field>
-  </form>
+<!--Dropdown to sort by price-->
+<form [formGroup]="sortFilterForm">
+  <mat-form-field appearance="fill">
+    <mat-label>{{ labels.sort }}</mat-label>
+    <mat-select formControlName="sortOrder">
+      <mat-option value="asc">Ascending</mat-option>
+      <mat-option value="desc">Descending</mat-option>
+    </mat-select>
+  </mat-form-field>
+</form>
 
-  <span *ngFor="let tariff of tariffs" class="p-1">
-    <mat-card appearance="outlined">
-      <mat-card-header>
-        <mat-card-title> {{tariff.supplier}}</mat-card-title>
-        <mat-card-subtitle>{{tariff.name}}</mat-card-subtitle>
-      </mat-card-header>
-      <mat-card-actions class="d-flex justify-content-between">
-        <span class="d-flex flex-column p-2">
-          <span>
-            {{tariff.description}}
-          </span>
-          <span>
-            Price: {{tariff.price}}
-          </span>
+<span *ngFor="let tariff of tariffs" class="p-1">
+  <mat-card appearance="outlined">
+    <mat-card-header>
+      <mat-card-title> {{ tariff.supplier }}</mat-card-title>
+      <mat-card-subtitle>{{ tariff.name }}</mat-card-subtitle>
+    </mat-card-header>
+    <mat-card-actions class="d-flex justify-content-between">
+      <span class="d-flex flex-column p-2">
+        <span>
+          {{ tariff.description }}
         </span>
-          <button mat-raised-button (click)="addToCompare(tariff)">{{labels.compare}}</button>
-      </mat-card-actions>
-    </mat-card>
-  </span>
-
+        <span> Price: {{ tariff.price }} </span>
+      </span>
+      <button mat-raised-button (click)="addToCompare(tariff)">
+        {{ labels.compare }}
+      </button>
+    </mat-card-actions>
+  </mat-card>
+</span>

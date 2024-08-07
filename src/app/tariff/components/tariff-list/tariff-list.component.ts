@@ -13,16 +13,24 @@ import { TariffService } from '../../services/tariff.service';
 @Component({
   selector: 'app-tariff-list',
   standalone: true,
-  imports: [CommonModule, ReactiveFormsModule, MatTableModule, MatSelectModule, RouterModule, MatListModule,MatButtonModule, MatCardModule],
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatTableModule,
+    MatSelectModule,
+    RouterModule,
+    MatListModule,
+    MatButtonModule,
+    MatCardModule,
+  ],
   templateUrl: './tariff-list.component.html',
-  styleUrl: './tariff-list.component.scss'
+  styleUrl: './tariff-list.component.scss',
 })
 export class TariffListComponent implements OnInit {
-
-  public readonly labels={
-    sort: "Sort by Price",
-    compare: "Add to Compare",
-  }
+  public readonly labels = {
+    sort: 'Sort by Price',
+    compare: 'Add to Compare',
+  };
 
   tariffs: ITarif[] = [];
 
@@ -30,23 +38,31 @@ export class TariffListComponent implements OnInit {
     sortOrder: new FormControl('asc'),
   });
 
-  constructor(public readonly tariffService: TariffService) { }
+  constructor(public readonly tariffService: TariffService) {}
 
   ngOnInit(): void {
     this.tariffs = this.tariffService.getTariffs();
 
-    this.sortFilterForm.get('sortOrder')?.valueChanges.subscribe(order => {
+    this.sortFilterForm.get('sortOrder')?.valueChanges.subscribe((order) => {
       this.sortTariffs(order);
     });
   }
 
   sortTariffs(order: string | null): void {
-    this.tariffs = this.tariffs.sort((a, b) => order === 'asc' ? a.price - b.price : b.price - a.price);
+    this.tariffs = this.tariffs.sort((a, b) =>
+      order === 'asc' ? a.price - b.price : b.price - a.price
+    );
   }
 
   addToCompare(tariff: ITarif): void {
-    if (this.tariffService.tariffComparisonList.length < 3 && !this.tariffService.tariffComparisonList.includes(tariff)) {
-      this.tariffService.tariffComparisonList = [...this.tariffService.tariffComparisonList, tariff];
+    if (
+      this.tariffService.tariffComparisonList.length < 3 &&
+      !this.tariffService.tariffComparisonList.includes(tariff)
+    ) {
+      this.tariffService.tariffComparisonList = [
+        ...this.tariffService.tariffComparisonList,
+        tariff,
+      ];
     } else if (this.tariffService.tariffComparisonList.length >= 3) {
       alert('You can only compare up to 3 tariffs.');
     }

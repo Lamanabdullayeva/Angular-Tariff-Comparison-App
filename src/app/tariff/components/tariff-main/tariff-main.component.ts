@@ -7,11 +7,10 @@ import { TariffComparisonListComponent } from '../tariff-comparison-list/tariff-
   standalone: true,
   imports: [TariffListComponent, TariffComparisonListComponent],
   templateUrl: './tariff-main.component.html',
-  styleUrl: './tariff-main.component.scss'
+  styleUrl: './tariff-main.component.scss',
 })
 export class TariffMainComponent {
-
-  public readonly labels={
-    title:"Tariff Comparison App"
-  }
+  public readonly labels = {
+    title: 'Tariff Comparison App',
+  };
 }
