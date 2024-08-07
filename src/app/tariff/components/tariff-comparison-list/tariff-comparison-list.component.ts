@@ -15,12 +15,17 @@ import { TariffService } from '../../services/tariff.service';
   styleUrl: './tariff-comparison-list.component.scss',
 })
 export class TariffComparisonListComponent {
-  // holds the English labels for localization
+  // The `labels` property holds localized strings for the UI, which are imported from the English language file.
   public readonly labels = en;
 
   constructor(public readonly tariffService: TariffService) {}
 
-  // removes the selected tariff from the list
+  /**
+   * Method to remove a selected tariff from the comparison list.
+   *
+   * @param {ITarif} tariff - The tariff to remove from the comparison list.
+   * This method filters the `tariffComparisonList` array, removing the specified tariff.
+   */
   removeFromCompare(tariff: ITarif): void {
     this.tariffService.tariffComparisonList =
       this.tariffService.tariffComparisonList.filter((t) => t !== tariff);

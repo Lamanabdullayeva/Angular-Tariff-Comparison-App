@@ -1,7 +1,7 @@
-<!--Dropdown to sort by price-->
+<!-- Dropdown menu to sort tariffs by price -->
 <form [formGroup]="sortFilterForm">
   <mat-form-field appearance="fill">
-    <mat-label>{{ labels.TARIF.ACTIONS.SORT }}</mat-label>
+    <mat-label>{{ labels.COMPONENTS.TARIFF.ACTIONS.SORT }}</mat-label>
     <mat-select formControlName="sortOrder">
       <mat-option value="asc">Ascending</mat-option>
       <mat-option value="desc">Descending</mat-option>
@@ -9,22 +9,28 @@
   </mat-form-field>
 </form>
 
-<!-- List of all tariffs which ayre displayed in a mat-card -->
-<span *ngFor="let tariff of tariffs" class="p-1">
+<!--
+  Display a list of tariffs, each in a Material Design card
+  Each tariff is represented with its supplier, name, description, and price
+  A button allows the user to add the tariff to a comparison list
+-->
+<span *ngFor="let tariff of tariffs" class="p-2">
   <mat-card appearance="outlined">
     <mat-card-header>
       <mat-card-title> {{ tariff.supplier }}</mat-card-title>
       <mat-card-subtitle>{{ tariff.name }}</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-actions>
-      <span>
+    <mat-card-actions class="d-flex justify-content-between">
+      <span class="d-flex flex-column p-2">
         <span>
           {{ tariff.description }}
         </span>
-        <span> {{ labels.TARIF.PROPERTIES.PRICE }}: {{ tariff.price }} </span>
+        <span>
+          {{ labels.COMPONENTS.TARIFF.PROPERTIES.PRICE }}: {{ tariff.price }}
+        </span>
       </span>
       <button mat-raised-button (click)="addToCompare(tariff)">
-        {{ labels.TARIF.ACTIONS.COMPARE }}
+        {{ labels.COMPONENTS.TARIFF.ACTIONS.COMPARE }}
       </button>
     </mat-card-actions>
   </mat-card>

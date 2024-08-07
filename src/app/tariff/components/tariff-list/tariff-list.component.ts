@@ -28,12 +28,13 @@ import { TariffService } from '../../services/tariff.service';
   styleUrl: './tariff-list.component.scss',
 })
 export class TariffListComponent implements OnInit {
-  // holds the English labels for localization
+  // The `labels` property holds localized strings for the UI, which are imported from the English language file
   public readonly labels = en;
 
-  // tariff list
+  // holds the list of tariffs to be displayed
   tariffs: ITarif[] = [];
 
+  // a reactive form that holds the sort order selected by the user
   sortFilterForm = new FormGroup({
     sortOrder: new FormControl('asc'),
   });
@@ -41,28 +42,42 @@ export class TariffListComponent implements OnInit {
   constructor(public readonly tariffService: TariffService) {}
 
   ngOnInit(): void {
-    // fetches the data from TariffService on initialization
+    // fetches the list of tariffs
     this.fetchData();
 
+    // sets up a listener to sort the list when the sort order changes
     this.sortFilterForm.get('sortOrder')?.valueChanges.subscribe((order) => {
       this.sortTariffs(order);
     });
   }
 
+  // fetches the tariff data from the TariffService
   private fetchData() {
     this.tariffs = this.tariffService.getTariffs();
   }
 
+  /**
+   * sorts the list of tariffs based on the selected order
+   * It sorts the tariffs in ascending or descending order based on their price
+   *
+   * @param {string | null} order - The order in which to sort the tariffs, either 'asc' for ascending or 'desc' for descending
+   */
   private sortTariffs(order: string | null): void {
     this.tariffs = this.tariffs.sort((a, b) =>
       order === 'asc' ? a.price - b.price : b.price - a.price
     );
   }
 
+  /**
+   * adds the selected tariff to the comparison list
+   * The comparison list is limited to a maximum of three tariffs
+   *
+   * @param {ITarif} tariff - The tariff to be added to the comparison list
+   */
   addToCompare(tariff: ITarif): void {
     if (
       this.tariffService.tariffComparisonList.length < 3 &&
-      !this.tariffService.tariffComparisonList.includes(tariff)
+      !this.tariffService.tariffComparisonList.find((t) => t.id === tariff.id)
     ) {
       this.tariffService.tariffComparisonList = [
         ...this.tariffService.tariffComparisonList,

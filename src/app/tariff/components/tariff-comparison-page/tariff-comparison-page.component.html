@@ -1,14 +1,28 @@
-<button mat-raised-button [routerLink]="['/']">
-  {{ labels.BUTTON.GO_BACK }}
-</button>
+<div class="p-3">
+  <h2 class="d-flex justify-content-around">
+    {{ labels.HEADERS.COMPARE_PAGE_TITLE }}
+  </h2>
 
-<!--Table which displays the tariff list-->
-<table mat-table [dataSource]="dataSource" class="mat-elevation-zs8">
-  <ng-container *ngFor="let column of displayedColumns" [matColumnDef]="column">
-    <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
-    <td mat-cell *matCellDef="let element">{{ element[column] }}</td>
-  </ng-container>
+  <!-- Button that navigates the user back to the previous page -->
+  <button mat-raised-button [routerLink]="['/']">
+    {{ labels.BUTTONS.GO_BACK }}
+  </button>
 
-  <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
-  <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
-</table>
+  <!--
+  Table component which displays the list of tariffs.
+  The table is populated using `dataSource`, which is a MatTableDataSource containing tariff data.
+  The table's columns are dynamically generated based on the keys of the tariff objects.
+-->
+  <table mat-table [dataSource]="dataSource">
+    <ng-container
+      *ngFor="let column of displayedColumns"
+      [matColumnDef]="column"
+    >
+      <th mat-header-cell *matHeaderCellDef>{{ column }}</th>
+      <td mat-cell *matCellDef="let item">{{ item[column] }}</td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+</div>
