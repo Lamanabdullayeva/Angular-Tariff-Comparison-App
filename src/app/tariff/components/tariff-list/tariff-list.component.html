@@ -1,7 +1,7 @@
 <!--Dropdown to sort by price-->
 <form [formGroup]="sortFilterForm">
   <mat-form-field appearance="fill">
-    <mat-label>{{ labels.sort }}</mat-label>
+    <mat-label>{{ labels.TARIF.ACTIONS.SORT }}</mat-label>
     <mat-select formControlName="sortOrder">
       <mat-option value="asc">Ascending</mat-option>
       <mat-option value="desc">Descending</mat-option>
@@ -15,15 +15,15 @@
       <mat-card-title> {{ tariff.supplier }}</mat-card-title>
       <mat-card-subtitle>{{ tariff.name }}</mat-card-subtitle>
     </mat-card-header>
-    <mat-card-actions class="d-flex justify-content-between">
-      <span class="d-flex flex-column p-2">
+    <mat-card-actions>
+      <span>
         <span>
           {{ tariff.description }}
         </span>
         <span> Price: {{ tariff.price }} </span>
       </span>
       <button mat-raised-button (click)="addToCompare(tariff)">
-        {{ labels.compare }}
+        {{ labels.TARIF.ACTIONS.COMPARE }}
       </button>
     </mat-card-actions>
   </mat-card>

@@ -9,8 +9,4 @@ import { TariffComparisonListComponent } from '../tariff-comparison-list/tariff-
   templateUrl: './tariff-main.component.html',
   styleUrl: './tariff-main.component.scss',
 })
-export class TariffMainComponent {
-  public readonly labels = {
-    title: 'Tariff Comparison App',
-  };
-}
+export class TariffMainComponent {}

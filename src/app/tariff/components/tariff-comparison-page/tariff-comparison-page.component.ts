@@ -6,6 +6,7 @@ import { CommonModule } from '@angular/common';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
 import { MatButtonModule } from '@angular/material/button';
+import { en } from '../../../i18n/en';
 
 @Component({
   selector: 'app-tariff-comparison-page',
@@ -21,14 +22,12 @@ import { MatButtonModule } from '@angular/material/button';
   styleUrl: './tariff-comparison-page.component.scss',
 })
 export class TariffComparisonPageComponent {
-  constructor(public readonly tariffService: TariffService) {}
+  public readonly labels = en;
 
   dataSource = new MatTableDataSource<ITarif>();
   displayedColumns: string[] = [];
 
-  public readonly labels = {
-    goBack: 'Go back',
-  };
+  constructor(public readonly tariffService: TariffService) {}
 
   ngOnInit(): void {
     this.dataSource.data = this.tariffService.tariffComparisonList;

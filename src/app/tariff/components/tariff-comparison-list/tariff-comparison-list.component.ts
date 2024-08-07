@@ -5,6 +5,7 @@ import { MatListModule } from '@angular/material/list';
 import { RouterModule } from '@angular/router';
 import { ITarif } from '../../interfaces/i-tarif';
 import { TariffService } from '../../services/tariff.service';
+import { en } from '../../../i18n/en';
 
 @Component({
   selector: 'app-tariff-comparison-list',
@@ -14,11 +15,7 @@ import { TariffService } from '../../services/tariff.service';
   styleUrl: './tariff-comparison-list.component.scss',
 })
 export class TariffComparisonListComponent {
-  public labels = {
-    title: 'Comparison List',
-    comparisonPage: 'Go to Comparison Page',
-    removeButton: 'Remove',
-  };
+  public readonly labels = en;
 
   constructor(public readonly tariffService: TariffService) {}
 

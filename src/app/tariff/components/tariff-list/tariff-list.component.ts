@@ -9,6 +9,7 @@ import { MatTableModule } from '@angular/material/table';
 import { RouterModule } from '@angular/router';
 import { ITarif } from '../../interfaces/i-tarif';
 import { TariffService } from '../../services/tariff.service';
+import { en } from '../../../i18n/en';
 
 @Component({
   selector: 'app-tariff-list',
@@ -27,10 +28,7 @@ import { TariffService } from '../../services/tariff.service';
   styleUrl: './tariff-list.component.scss',
 })
 export class TariffListComponent implements OnInit {
-  public readonly labels = {
-    sort: 'Sort by Price',
-    compare: 'Add to Compare',
-  };
+  public readonly labels = en;
 
   tariffs: ITarif[] = [];
 
